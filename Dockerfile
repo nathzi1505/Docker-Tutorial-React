@@ -23,5 +23,8 @@ RUN ["npm", "run", "build"]
 # Use an existing docker image as a base
 FROM nginx 
 
+# Expose the port 80
+EXPOSE 80
+
 # Copy the build contents from the builder container file system
 COPY --from=builder /app/build /usr/share/nginx/html
