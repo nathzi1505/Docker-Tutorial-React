@@ -1,12 +1,12 @@
 ## BUILD STEP
 # Use an existing docker image as a base
-FROM node:alpine as builder
+FROM node:alpine
 
 # Set the working directory
 WORKDIR '/app'
 
 # Copy the package.json the container file system
-COPY ./package.json ./
+COPY package*.json ./
 
 # Download and install all dependencies
 RUN npm install
@@ -27,4 +27,4 @@ FROM nginx
 EXPOSE 80
 
 # Copy the build contents from the builder container file system
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
