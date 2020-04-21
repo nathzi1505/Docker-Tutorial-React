@@ -1,0 +1,8 @@
+language: generic
+sudo: require
+services:
+    - docker
+before_install:
+    - docker build -t nathzi1505/travis -f Dockerfile.dev .
+script: 
+    - docker run -e CI=true nathzi1505/travis npm run test
